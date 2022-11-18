@@ -1,4 +1,4 @@
-use crate as pallet_template;
+use crate as meta_assets;
 use frame_support::traits::{ConstU16, ConstU64};
 use frame_system as system;
 use sp_core::H256;
@@ -18,7 +18,7 @@ frame_support::construct_runtime!(
 		UncheckedExtrinsic = UncheckedExtrinsic,
 	{
 		System: frame_system,
-		TemplateModule: pallet_template,
+		MetaAssets: meta_assets,
 	}
 );
 
@@ -49,7 +49,7 @@ impl system::Config for Test {
 	type MaxConsumers = frame_support::traits::ConstU32<16>;
 }
 
-impl pallet_template::Config for Test {
+impl meta_assets::Config for Test {
 	type Event = Event;
 }
 
