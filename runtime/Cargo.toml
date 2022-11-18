@@ -50,6 +50,7 @@ hex-literal = { version = "0.3.4", optional = true }
 
 # Local Dependencies
 pallet-template = { version = "4.0.0-dev", default-features = false, path = "../pallets/template" }
+pallet-meta-assets = { version = "0.0.1-dev", default-features = false, path = "../pallets/meta-assets" }
 
 [build-dependencies]
 substrate-wasm-builder = { version = "5.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
@@ -69,6 +70,7 @@ std = [
 	"pallet-randomness-collective-flip/std",
 	"pallet-sudo/std",
 	"pallet-template/std",
+	"pallet-meta-assets/std",
 	"pallet-timestamp/std",
 	"pallet-transaction-payment-rpc-runtime-api/std",
 	"pallet-transaction-payment/std",
@@ -106,6 +108,7 @@ try-runtime = [
 	"pallet-randomness-collective-flip/try-runtime",
 	"pallet-sudo/try-runtime",
 	"pallet-template/try-runtime",
+	"pallet-meta-assets/try-runtime",
 	"pallet-timestamp/try-runtime",
 	"pallet-transaction-payment/try-runtime",
 ]
