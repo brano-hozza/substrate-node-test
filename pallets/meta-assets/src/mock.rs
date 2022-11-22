@@ -52,8 +52,3 @@ impl system::Config for Test {
 impl meta_assets::Config for Test {
 	type Event = Event;
 }
-
-// Build genesis storage according to the mock runtime.
-pub fn new_test_ext() -> sp_io::TestExternalities {
-	system::GenesisConfig::default().build_storage::<Test>().unwrap().into()
-}
