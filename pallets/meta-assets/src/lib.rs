@@ -24,6 +24,7 @@ pub mod pallet {
 	#[pallet::generate_store(pub(super) trait Store)]
 	#[pallet::without_storage_info]
 	pub struct Pallet<T>(_);
+
 	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
 	#[scale_info(skip_type_params(T))]
 	pub struct AssetItem<T: Config> {
@@ -73,6 +74,25 @@ pub mod pallet {
 			// Emit an event.
 			Self::deposit_event(Event::AssetWasStored(asset_name, owner));
 			// Return a successful DispatchResultWithPostInfo
+			Ok(())
+		}
+
+		#[pallet::weight(10_000 + T::DbWeight::get().writes(1))]
+		pub fn transfer_asset(
+			origin: OriginFor<T>,
+			hash: T::Hash,
+			destination: T::AccountId,
+		) -> DispatchResult {
+			let owner = ensure_signed(origin)?;
+
+			let asset = <AssetsStore<T>>::get(hash).ok_or(Error::<T>::NoneValue)?;
+
+			ensure!(asset.owner == owner, Error::<T>::NoneValue);
+
+			let new_asset = AssetItem { name: asset.name, owner: destination.clone() };
+
+			<AssetsStore<T>>::insert(hash, new_asset);
+
 			Ok(())
 		}
 	}
